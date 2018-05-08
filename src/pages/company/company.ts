@@ -3,12 +3,13 @@ import { NavController } from 'ionic-angular';
 import { ViewChild } from '@angular/core';
 import { Slides } from 'ionic-angular';
 
-
 @Component({
-  selector: 'page-home',
-  templateUrl: 'home.html'
+  selector: 'page-company',
+  templateUrl: 'company.html'
 })
-export class HomePage {
+
+export class CompanyPage {
+
   @ViewChild(Slides) slides: Slides;
 
   goToSlide() {
