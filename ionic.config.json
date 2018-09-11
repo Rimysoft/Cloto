@@ -1,6 +1,6 @@
 {
   "name": "cloto",
-  "app_id": "b1224609",
+  "integrations": {},
   "type": "ionic-angular",
-  "integrations": {}
+  "pro_id": "b1224609"
 }

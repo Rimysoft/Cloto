@@ -1,0 +1,20 @@
+
+
+<ion-navbar *navbar>
+    <ion-title>
+      Collections
+    </ion-title>
+  </ion-navbar>
+
+  <ion-content class="home">
+    <ion-list>
+      <button ion-item *ngFor="let collection of collections" (click)="goToCollection(collection.id)" >
+          <h2>{{collection.title_IT}}</h2>
+      </button>
+      <!--<ion-item *ngFor="let collection of collections">
+
+        <h2>{{collection.title_IT}}</h2>
+        <h3>{{collection.id}}</h3>
+      </ion-item>-->
+    </ion-list>
+  </ion-content>
