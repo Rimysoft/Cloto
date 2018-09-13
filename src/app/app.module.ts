@@ -21,6 +21,7 @@ import { CollectionsServiceProvider } from '../providers/collections-service/col
 import { HttpClientModule } from '@angular/common/http';
 import { ProductsProvider } from '../providers/products/products';
 
+import { IonicImageViewerModule } from 'ionic-img-viewer';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { ProductsProvider } from '../providers/products/products';
   imports: [
     BrowserModule,
     HttpClientModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    IonicImageViewerModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [

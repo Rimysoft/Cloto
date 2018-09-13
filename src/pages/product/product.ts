@@ -8,6 +8,8 @@ import { ProductsProvider } from '../../providers/products/products'
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
  */
+import { LoadingController } from 'ionic-angular';
+
 
 @IonicPage()
 @Component({
@@ -17,23 +19,32 @@ import { ProductsProvider } from '../../providers/products/products'
 })
 export class ProductPage {
 
-  public products : any;
+  public urls : any;
+  public title : "";
 
   loadProducts(id){
+    let loader = this.loading.create({
+      content: 'loading',
+    });
+    loader.present().then(() => {
     this.productsService.load(id)
     .then(data =>{
-      this.products = data;
-      console.log(data);
+      this.urls = data[0].urls;
+      this.title = data[0].title_IT
+      //
+      loader.dismiss();
+      console.log(data[0]);
+      });
     });
   }
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public productsService: ProductsProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public productsService: ProductsProvider,public loading: LoadingController) {
     console.log(navParams.data.id);
     this.loadProducts(navParams.data.id);
   }
-
+/*
   ionViewDidLoad() {
     console.log('ionViewDidLoad ProductPage');
   }
-
+*/
 }

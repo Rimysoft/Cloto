@@ -7,16 +7,25 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>product</ion-title>
+    <ion-title>{{title}}</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
- <ion-item *ngFor="let product of products">
+  
+  <ion-slides class="image-slider" loop="true" slidesPerView="2">
+    <ion-slide *ngFor="let img of urls">
+      <img src="{{img}}" class="thumb-img" imageViewer/>
+    </ion-slide>
+  </ion-slides>
+<!--
+  <ion-item *ngFor="let url of urls">
 
-        <h2>{{product.urls[0]}}</h2>
+        <h2>{{url}}</h2>
         
       </ion-item>
+-->
+   
 </ion-content>

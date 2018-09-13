@@ -4,6 +4,7 @@ import { NavController } from 'ionic-angular';
 import { ProductPage } from '../product/product';
 
 import { CollectionsServiceProvider } from '../../providers/collections-service/collections-service';
+import { LoadingController } from 'ionic-angular';
 
 @Component({
   selector: 'collections',
@@ -15,14 +16,20 @@ export class CollectionsPage {
   public collections : any;
 
   loadCollections(){
-    this.collectionsService.load()
-    .then(data => {
-      console.log(data);
-      this.collections = data;
+    let loader = this.loading.create({
+      content: 'loading',
+    });
+    loader.present().then(() => {
+      this.collectionsService.load()
+      .then(data => {
+        console.log(data);
+        this.collections = data;
+        loader.dismiss();
+      });
     });
   }
 
-  constructor(public navCtrl: NavController, public collectionsService: CollectionsServiceProvider) {
+  constructor(public navCtrl: NavController, public collectionsService: CollectionsServiceProvider, public loading: LoadingController) {
     console.log("Collections");
     this.loadCollections();
   }
