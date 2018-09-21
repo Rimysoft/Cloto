@@ -14,7 +14,7 @@ export class ProductsProvider {
   public data: any;
 
   constructor(public http: HttpClient) {
-    console.log('Hello ProductsProvider Provider');
+    //console.log('Hello ProductsProvider Provider');
   }
 
   load(idProduct){
@@ -29,7 +29,7 @@ export class ProductsProvider {
       // then on the response, it'll map the JSON data to a parsed JS object.
       // Next, we process the data and resolve the promise with the new data.
       var url = 'http://www.arredamentiportocervo.it/API/Products/' + idProduct;
-      console.log(url);
+      //console.log(url);
       this.http.get<any[]>(url)
         .subscribe(data => {
           // we've got back the raw data, now generate the core schedule data

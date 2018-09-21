@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { /*IonicPage,*/ NavController, NavParams } from 'ionic-angular';
 
 import { ProductsProvider } from '../../providers/products/products'
 /**
@@ -11,7 +11,7 @@ import { ProductsProvider } from '../../providers/products/products'
 import { LoadingController } from 'ionic-angular';
 
 
-@IonicPage()
+/*@IonicPage()*/
 @Component({
   selector: 'page-product',
   templateUrl: 'product.html',
@@ -33,13 +33,13 @@ export class ProductPage {
       this.title = data[0].title_IT
       //
       loader.dismiss();
-      console.log(data[0]);
+      //console.log(data[0]);
       });
     });
   }
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public productsService: ProductsProvider,public loading: LoadingController) {
-    console.log(navParams.data.id);
+    //console.log(navParams.data.id);
     this.loadProducts(navParams.data.id);
   }
 /*
