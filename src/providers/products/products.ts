@@ -12,6 +12,7 @@ import 'rxjs/add/operator/map';
 export class ProductsProvider {
 
   public data: any;
+  public err: any;
 
   constructor(public http: HttpClient) {
     //console.log('Hello ProductsProvider Provider');
@@ -22,13 +23,17 @@ export class ProductsProvider {
       // already loaded data
       return Promise.resolve(this.data);
     }
+    if (this.err) {
+      // already loaded data
+      return Promise.resolve(this.err);
+    }
     //
     // don't have the data yet
     return new Promise(resolve => {
       // We're using Angular HTTP provider to request the data,
       // then on the response, it'll map the JSON data to a parsed JS object.
       // Next, we process the data and resolve the promise with the new data.
-      var url = 'http://www.arredamentiportocervo.it/API/Products/' + idProduct;
+      var url = 'http://www.arredamentiportocervo.it/API/Products1/' + idProduct;
       //console.log(url);
       this.http.get<any[]>(url)
         .subscribe(data => {
@@ -36,6 +41,9 @@ export class ProductsProvider {
           // and save the data for later reference
           this.data = data;
           resolve(this.data);
+        }, error => {
+            this.err = "Network error!" + error;
+            resolve(this.err);
         });
     });
   }

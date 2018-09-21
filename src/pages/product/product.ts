@@ -28,7 +28,10 @@ export class ProductPage {
     });
     loader.present().then(() => {
     this.productsService.load(id)
-    .then(data =>{
+    .then((data, err) =>{
+      /*if(err){
+        console.log("err");
+      }*/
       this.urls = data[0].urls;
       this.title = data[0].title_IT
       //
