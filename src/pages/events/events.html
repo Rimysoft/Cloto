@@ -1,11 +1,33 @@
+<!--
+  Generated template for the EventsPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
 <ion-header>
+
   <ion-navbar>
-    <ion-title>
-        events
-    </ion-title>
+    <ion-title>Eventi</ion-title>
   </ion-navbar>
+
 </ion-header>
 
-<ion-content padding>
 
+<ion-content class="home">
+  <ion-list>
+      <div ng-if="collections">
+    <button ion-item *ngFor="let event of events" (click)="goToEventDetail(event)" >
+      <ion-thumbnail item-start>
+        <img src="{{event.imageUrl}}">
+      </ion-thumbnail>
+      <h2>{{event.title}}</h2>
+       
+    </button>
+    </div>
+    <!--<ion-item *ngFor="let collection of collections">
+
+      <h2>{{collection.title_IT}}</h2>
+      <h3>{{collection.id}}</h3>
+    </ion-item>-->
+  </ion-list>
 </ion-content>

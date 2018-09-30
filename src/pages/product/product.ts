@@ -9,6 +9,7 @@ import { ProductsProvider } from '../../providers/products/products'
  * Ionic pages and navigation.
  */
 import { LoadingController } from 'ionic-angular';
+import { AlertController } from 'ionic-angular';
 
 
 /*@IonicPage()*/
@@ -22,26 +23,37 @@ export class ProductPage {
   public urls : any;
   public title : "";
 
+  presentAlert() {
+    let alert = this.alertCtrl.create({
+      title: 'Errore di rete!',
+      subTitle: 'Per favore verifica la tua connessione a Internet e riprova!',
+      buttons: ['Ok']
+    });
+    alert.present();
+  }
+
   loadProducts(id){
     let loader = this.loading.create({
       content: 'loading',
     });
     loader.present().then(() => {
     this.productsService.load(id)
-    .then((data, err) =>{
-      /*if(err){
-        console.log("err");
-      }*/
-      this.urls = data[0].urls;
-      this.title = data[0].title_IT
-      //
+    .then((data) =>{
+      if(data === "Network error"){
+        this.presentAlert();
+      }
+      else{
+        this.urls = data[0].urls;
+        this.title = data[0].title_IT
+      }
+        //
       loader.dismiss();
       //console.log(data[0]);
       });
     });
   }
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public productsService: ProductsProvider,public loading: LoadingController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public productsService: ProductsProvider,public loading: LoadingController,  private alertCtrl: AlertController) {
     //console.log(navParams.data.id);
     this.loadProducts(navParams.data.id);
   }

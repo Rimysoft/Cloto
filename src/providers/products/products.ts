@@ -33,7 +33,7 @@ export class ProductsProvider {
       // We're using Angular HTTP provider to request the data,
       // then on the response, it'll map the JSON data to a parsed JS object.
       // Next, we process the data and resolve the promise with the new data.
-      var url = 'http://www.arredamentiportocervo.it/API/Products1/' + idProduct;
+      var url = 'http://www.arredamentiportocervo.it/API/Products/' + idProduct;
       //console.log(url);
       this.http.get<any[]>(url)
         .subscribe(data => {
@@ -42,7 +42,7 @@ export class ProductsProvider {
           this.data = data;
           resolve(this.data);
         }, error => {
-            this.err = "Network error!" + error;
+            this.err = "Network error";
             resolve(this.err);
         });
     });

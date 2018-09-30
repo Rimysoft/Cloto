@@ -13,6 +13,7 @@ import { TabsPage } from '../pages/tabs/tabs';
 
 import { CollectionsPage } from '../pages/collections/collections';
 import { EventsPage } from '../pages/events/events';
+import { EventsDetailPage } from '../pages/events-detail/events-detail';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -22,6 +23,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { ProductsProvider } from '../providers/products/products';
 
 import { IonicImageViewerModule } from 'ionic-img-viewer';
+import { EventsProvider } from '../providers/events/events';
 
 @NgModule({
   declarations: [
@@ -31,6 +33,7 @@ import { IonicImageViewerModule } from 'ionic-img-viewer';
     HomePage,
     CompanyPage,
     EventsPage,
+    EventsDetailPage,
     CollectionsPage,
     ProductPage,
     TabsPage
@@ -48,6 +51,7 @@ import { IonicImageViewerModule } from 'ionic-img-viewer';
     CompanyPage,
     ContactPage,
     HomePage,
+    EventsDetailPage,
     EventsPage,
     CollectionsPage,
     ProductPage,
@@ -59,7 +63,8 @@ import { IonicImageViewerModule } from 'ionic-img-viewer';
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     CollectionsServiceProvider,
     ProductsProvider,
-    ProductsProvider
+    ProductsProvider,
+    EventsProvider
   ]
 })
 export class AppModule {}

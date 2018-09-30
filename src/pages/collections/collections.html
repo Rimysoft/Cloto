@@ -15,9 +15,15 @@
 
   <ion-content class="home">
     <ion-list>
+        <div ng-if="collections">
       <button ion-item *ngFor="let collection of collections" (click)="goToCollection(collection.id)" >
-          <h2>{{collection.title_IT}}</h2>
+        <!--<ion-thumbnail item-start>
+          <img src="{{collection.title_IT}}">
+        </ion-thumbnail>-->
+        <h2>{{collection.title_IT}}</h2>
+         
       </button>
+      </div>
       <!--<ion-item *ngFor="let collection of collections">
 
         <h2>{{collection.title_IT}}</h2>

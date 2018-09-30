@@ -6,6 +6,8 @@ import { ProductPage } from '../product/product';
 import { CollectionsServiceProvider } from '../../providers/collections-service/collections-service';
 import { LoadingController } from 'ionic-angular';
 
+import { AlertController } from 'ionic-angular';
+
 @Component({
   selector: 'collections',
   templateUrl: 'collections.html',
@@ -14,6 +16,16 @@ import { LoadingController } from 'ionic-angular';
 export class CollectionsPage {
 
   public collections : any;
+  public err : any;
+
+  presentAlert() {
+    let alert = this.alertCtrl.create({
+      title: 'Errore di rete!',
+      subTitle: 'Per favore verifica la tua connessione a Internet e riprova!',
+      buttons: ['Ok']
+    });
+    alert.present();
+  }
 
   loadCollections(){
     let loader = this.loading.create({
@@ -21,15 +33,23 @@ export class CollectionsPage {
     });
     loader.present().then(() => {
       this.collectionsService.load()
-      .then(data => {
-        console.log(data);
-        this.collections = data;
+      .then((data) => {
+        if(data === "Network error"){
+          this.presentAlert();
+        }
+        else{
+          this.collections = data;
+        
+        }
+        
+        //console.log(data);
+        
         loader.dismiss();
       });
     });
   }
 
-  constructor(public navCtrl: NavController, public collectionsService: CollectionsServiceProvider, public loading: LoadingController) {
+  constructor(public navCtrl: NavController, public collectionsService: CollectionsServiceProvider, public loading: LoadingController, private alertCtrl: AlertController) {
     console.log("Collections");
     this.loadCollections();
   }
